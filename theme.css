@@ -1,4 +1,21 @@
-body {
+/*
+	SILVER — a dark, monochrome theme for Obsidian.
+
+	Graphite chassis, silver hairlines, bright-silver interaction points.
+	Every corner is square. No hue anywhere: emphasis comes from
+	brightness, weight, and 1px rules — like an instrument panel.
+
+	Dark mode only. Set Obsidian to dark (Settings → Appearance).
+	Author: bkornpob
+*/
+
+/* ---------------------------------------------------------------
+   Geometry — sharp everywhere.
+   Scoped to .theme-dark so it outranks body-level variable
+   injection from plugins regardless of stylesheet order.
+   --------------------------------------------------------------- */
+
+.theme-dark {
 	--radius-s: 0px;
 	--radius-m: 0px;
 	--radius-l: 0px;
@@ -8,6 +25,11 @@ body {
 	--toggle-radius: 0px;
 	--toggle-thumb-radius: 0px;
 	--slider-thumb-radius: 0px;
+
+	/* Coexistence: code-styler plugin derives its codeblock and
+	   inline-code radii from these body-level variables. */
+	--border-radius: 0px;
+	--code-styler-inline-border-radius: 0px;
 }
 
 .workspace-tab-header.is-active::before, .workspace-tab-header.is-active::after {
@@ -31,4 +53,472 @@ svg * {
 
 .menu-separator {
 	margin: var(--size-2-1) calc(var(--size-2-1) * -1);
+}
+
+/* ---------------------------------------------------------------
+   Palette — the silver scale
+   --------------------------------------------------------------- */
+
+.theme-dark {
+	--color-base-00: #131313;
+	--color-base-05: #171717;
+	--color-base-10: #1a1a1a;
+	--color-base-20: #1f1f1f;
+	--color-base-25: #252525;
+	--color-base-30: #2e2e2e;
+	--color-base-35: #3a3a3a;
+	--color-base-40: #4a4a4a;
+	--color-base-50: #616161;
+	--color-base-60: #8f8f8f;
+	--color-base-70: #b4b4b4;
+	--color-base-100: #e8e8e8;
+	--background-primary: #131313;
+	--background-primary-alt: #181818;
+	--background-secondary: #171717;
+	--background-secondary-alt: #1d1d1d;
+	--background-modifier-hover: rgb(255 255 255 / 6%);
+	--background-modifier-active-hover: rgb(255 255 255 / 9%);
+	--background-modifier-border: rgb(255 255 255 / 10%);
+	--background-modifier-border-hover: rgb(255 255 255 / 18%);
+	--background-modifier-border-focus: #b8b8b8;
+	--background-modifier-form-field: #101010;
+	--background-modifier-form-field-hover: #1a1a1a;
+	--background-modifier-cover: rgb(8 8 8 / 70%);
+	--background-modifier-error: #333;
+	--background-modifier-success: rgb(255 255 255 / 8%);
+	--background-modifier-message: #e6e6e6;
+}
+
+/* ---------------------------------------------------------------
+   Text & accent — emphasis by brightness, never by hue
+   --------------------------------------------------------------- */
+
+.theme-dark {
+	--text-normal: #c6c6c6;
+	--text-muted: #8f8f8f;
+	--text-faint: #616161;
+	--text-on-accent: #141414;
+	--text-on-accent-inverted: #141414;
+	--text-error: #f2f2f2;
+	--text-success: #d9d9d9;
+	--text-warning: #e6e6e6;
+	--text-accent: #e6e6e6;
+	--text-accent-hover: #f5f5f5;
+	--text-selection: rgb(230 230 230 / 20%);
+	--text-highlight-bg: #d9d9d9;
+	--highlight-selected-bg-color: #f5f5f5;
+	--highlight-mix-blend-mode: normal;
+	--accent-h: 0;
+	--accent-s: 0%;
+	--accent-l: 88%;
+	--color-accent-1: #f0f0f0;
+	--color-accent-2: #fafafa;
+	--interactive-normal: #252525;
+	--interactive-hover: #2e2e2e;
+	--interactive-accent: #e6e6e6;
+	--interactive-accent-hover: #f2f2f2;
+}
+
+/* ---------------------------------------------------------------
+   Typography — system stacks, generous reading measure
+   --------------------------------------------------------------- */
+
+.theme-dark {
+	--font-interface-theme: system-ui, -apple-system, "Segoe UI", roboto, "Helvetica Neue", arial, sans-serif;
+	--font-text-theme: system-ui, -apple-system, "Segoe UI", roboto, "Helvetica Neue", arial, sans-serif;
+	--font-monospace-theme: ui-monospace, "Cascadia Code", "SF Mono", "JetBrains Mono", menlo, consolas, "Liberation Mono", monospace;
+	--font-text-size: 16px;
+	--line-height-normal: 1.65;
+	--line-height-tight: 1.3;
+	--file-line-width: 720px;
+	--bold-weight: 600;
+	--bold-color: #f0f0f0;
+	--italic-color: #d4d4d4;
+	--heading-formatting: #4a4a4a;
+	--h1-size: 1.7em;
+	--h2-size: 1.4em;
+	--h3-size: 1.2em;
+	--h4-size: 1.05em;
+	--h5-size: 0.9em;
+	--h6-size: 0.85em;
+	--h1-weight: 600;
+	--h2-weight: 600;
+	--h3-weight: 600;
+	--h4-weight: 600;
+	--h5-weight: 600;
+	--h6-weight: 600;
+	--h1-color: #f0f0f0;
+	--h2-color: #e8e8e8;
+	--h3-color: #e0e0e0;
+	--h4-color: #d6d6d6;
+	--h5-color: #c0c0c0;
+	--h6-color: #a8a8a8;
+	--h1-line-height: 1.3;
+	--h2-line-height: 1.35;
+	--inline-title-color: #f2f2f2;
+	--inline-title-size: 1.9em;
+	--inline-title-weight: 700;
+	--inline-title-line-height: 1.2;
+}
+
+/* ---------------------------------------------------------------
+   Editor — links, lists, quotes, rules, embeds, properties
+   --------------------------------------------------------------- */
+
+.theme-dark {
+	--caret-color: #e6e6e6;
+	--link-color: #ebebeb;
+	--link-color-hover: #fff;
+	--link-decoration: underline;
+	--link-decoration-hover: underline;
+	--link-decoration-thickness: 1px;
+	--link-unresolved-color: #8f8f8f;
+	--link-unresolved-opacity: 0.85;
+	--link-external-color: #d6d6d6;
+	--link-external-color-hover: #f5f5f5;
+	--link-external-decoration: underline;
+	--link-external-decoration-hover: underline;
+	--list-marker-color: #7a7a7a;
+	--list-marker-color-hover: #c6c6c6;
+	--list-marker-color-collapsed: #e6e6e6;
+	--list-bullet-radius: 0px;
+	--indentation-guide-color: rgb(255 255 255 / 8%);
+	--indentation-guide-color-active: rgb(255 255 255 / 22%);
+	--indentation-guide-width: 1px;
+	--blockquote-border-thickness: 2px;
+	--blockquote-border-color: #8f8f8f;
+	--blockquote-color: #a8a8a8;
+	--blockquote-background-color: #0000;
+	--blockquote-font-style: italic;
+	--hr-color: rgb(255 255 255 / 14%);
+	--hr-thickness: 1px;
+	--embed-background: #181818;
+	--embed-border-start: 2px solid #4a4a4a;
+	--metadata-background: rgb(255 255 255 / 2%);
+	--metadata-border-color: rgb(255 255 255 / 8%);
+	--metadata-border-width: 1px;
+	--metadata-property-background: #0000;
+	--metadata-label-background: #0000;
+	--metadata-label-text-color: #8f8f8f;
+	--metadata-label-font-weight: 500;
+	--metadata-input-text-color: #c6c6c6;
+	--metadata-divider-color: rgb(255 255 255 / 6%);
+}
+
+/* ---------------------------------------------------------------
+   Code — monochrome syntax: brightness + weight, no hue
+   --------------------------------------------------------------- */
+
+.theme-dark {
+	--code-background: #191919;
+	--code-border-width: 1px;
+	--code-border-color: rgb(255 255 255 / 8%);
+	--code-size: 0.875em;
+	--code-normal: #c6c6c6;
+	--code-comment: #6f6f6f;
+	--code-keyword: #f2f2f2;
+	--code-string: #b8b8b8;
+	--code-value: #e8e8e8;
+	--code-function: #fff;
+	--code-property: #d0d0d0;
+	--code-tag: #f2f2f2;
+	--code-operator: #9a9a9a;
+	--code-punctuation: #7a7a7a;
+	--code-important: #fff;
+}
+
+/* ---------------------------------------------------------------
+   Tags, tasks, callouts, tables
+   --------------------------------------------------------------- */
+
+.theme-dark {
+	--tag-color: #d9d9d9;
+	--tag-background: rgb(255 255 255 / 6%);
+	--tag-background-hover: rgb(255 255 255 / 10%);
+	--tag-border-color: rgb(255 255 255 / 14%);
+	--tag-border-color-hover: rgb(255 255 255 / 24%);
+	--tag-border-width: 1px;
+	--tag-radius: 0px;
+	--tag-padding-x: 6px;
+	--tag-padding-y: 1px;
+	--tag-size: 0.85em;
+	--tag-weight: 500;
+	--tag-decoration: none;
+	--tag-decoration-hover: none;
+	--checkbox-color: #e6e6e6;
+	--checkbox-color-hover: #f5f5f5;
+	--checkbox-border-color: #5a5a5a;
+	--checkbox-border-color-hover: #9a9a9a;
+	--checkbox-marker-color: #141414;
+	--checklist-done-color: #6f6f6f;
+	--checklist-done-decoration: line-through;
+	--callout-radius: 0px;
+	--callout-blend-mode: normal;
+	--callout-border-width: 1px;
+	--callout-border-opacity: 0.35;
+	--callout-title-size: 0.85em;
+	--callout-title-weight: 600;
+	--callout-default: #e6e6e6;
+	--callout-info: #e6e6e6;
+	--callout-todo: #e6e6e6;
+	--callout-summary: #d9d9d9;
+	--callout-tip: #f2f2f2;
+	--callout-success: #d9d9d9;
+	--callout-question: #ccc;
+	--callout-warning: #f5f5f5;
+	--callout-fail: #b8b8b8;
+	--callout-error: #fff;
+	--callout-bug: #d0d0d0;
+	--callout-example: #e0e0e0;
+	--callout-quote: #c0c0c0;
+	--callout-important: #f0f0f0;
+	--table-border-color: rgb(255 255 255 / 10%);
+	--table-header-background: #1d1d1d;
+	--table-header-color: #ececec;
+	--table-header-weight: 600;
+	--table-row-background-hover: rgb(255 255 255 / 5%);
+	--table-row-alt-background: rgb(255 255 255 / 2.5%);
+	--table-text-size: 0.95em;
+}
+
+/* ---------------------------------------------------------------
+   Workspace chrome — titlebar, ribbon, tabs, sidebar, status bar
+   --------------------------------------------------------------- */
+
+.theme-dark {
+	--titlebar-background: #101010;
+	--titlebar-background-focused: #101010;
+	--titlebar-text-color: #8f8f8f;
+	--titlebar-text-weight: 500;
+	--ribbon-background: #101010;
+	--ribbon-background-collapsed: #101010;
+	--status-bar-background: #101010;
+	--status-bar-text-color: #7a7a7a;
+	--status-bar-border-color: rgb(255 255 255 / 8%);
+	--status-bar-font-size: 11px;
+	--tab-text-color: #8f8f8f;
+	--tab-text-color-active: #e6e6e6;
+	--tab-text-color-focused: #a8a8a8;
+	--tab-text-color-focused-active: #f2f2f2;
+	--tab-text-color-focused-active-current: #f2f2f2;
+	--tab-background-active: #181818;
+	--tab-outline-color: rgb(255 255 255 / 8%);
+	--tab-outline-width: 1px;
+	--tab-font-weight: 500;
+	--divider-color: rgb(255 255 255 / 8%);
+	--divider-color-hover: rgb(255 255 255 / 22%);
+	--nav-item-color: #a8a8a8;
+	--nav-item-color-hover: #e0e0e0;
+	--nav-item-color-active: #f2f2f2;
+	--nav-item-background-hover: rgb(255 255 255 / 5%);
+	--nav-item-background-active: rgb(255 255 255 / 8%);
+	--nav-item-weight: 400;
+	--nav-item-weight-hover: 500;
+	--nav-item-weight-active: 500;
+	--nav-collapse-icon-color: #6f6f6f;
+	--nav-indentation-guide-color: rgb(255 255 255 / 8%);
+	--vault-profile-color: #e6e6e6;
+	--vault-profile-font-size: 12px;
+	--vault-profile-font-weight: 600;
+	--icon-color: #8f8f8f;
+	--icon-color-hover: #e0e0e0;
+	--icon-color-active: #f2f2f2;
+	--icon-color-focused: #e6e6e6;
+	--icon-opacity: 0.8;
+	--icon-opacity-hover: 1;
+}
+
+/* ---------------------------------------------------------------
+   Components — menus, modals, tooltips, notices, scrollbars,
+   toggles, sliders, search
+   --------------------------------------------------------------- */
+
+.theme-dark {
+	--menu-background: #1a1a1a;
+	--menu-border-color: rgb(255 255 255 / 12%);
+	--menu-border-width: 1px;
+	--modal-background: #171717;
+	--modal-border-color: rgb(255 255 255 / 12%);
+	--modal-border-width: 1px;
+	--modal-radius: 0px;
+	--prompt-border-color: rgb(255 255 255 / 12%);
+	--tooltip-color: #141414;
+	--notice-color: #141414;
+	--notice-radius: 0px;
+	--notice-font-weight: 500;
+	--scrollbar-bg: #0000;
+	--scrollbar-thumb-bg: rgb(255 255 255 / 14%);
+	--scrollbar-active-thumb-bg: rgb(255 255 255 / 28%);
+	--scrollbar-width: 8px;
+	--scrollbar-height: 8px;
+	--toggle-thumb-color: #e8e8e8;
+	--slider-track-background: #2e2e2e;
+	--slider-track-height: 2px;
+	--search-result-background: #171717;
+}
+
+/* ---------------------------------------------------------------
+   Graph & canvas — silver nodes on graphite
+   --------------------------------------------------------------- */
+
+.theme-dark {
+	--graph-line: #3a3a3a;
+	--graph-node: #b4b4b4;
+	--graph-node-unresolved: #5a5a5a;
+	--graph-node-focused: #fff;
+	--graph-node-tag: #8f8f8f;
+	--graph-node-attachment: #6f6f6f;
+	--graph-text: #a8a8a8;
+	--canvas-background: #101010;
+	--canvas-dot-pattern: #2a2a2a;
+	--canvas-card-label-color: #8f8f8f;
+	--canvas-color-1: #f0f0f0;
+	--canvas-color-2: #d4d4d4;
+	--canvas-color-3: #b8b8b8;
+	--canvas-color-4: #9c9c9c;
+	--canvas-color-5: #808080;
+	--canvas-color-6: #646464;
+}
+
+/* ---------------------------------------------------------------
+   Signature details
+   --------------------------------------------------------------- */
+
+/* Silver highlighter: inverted mark with dark ink */
+
+.theme-dark mark {
+	color: #141414;
+}
+
+.theme-dark .inline-title {
+	letter-spacing: -0.02em;
+}
+
+.theme-dark .status-bar {
+	font-variant-numeric: tabular-nums;
+}
+
+.theme-dark .workspace-drawer-vault-name {
+	text-transform: uppercase;
+	letter-spacing: 0.1em;
+}
+
+.theme-dark .callout-title-inner {
+	text-transform: uppercase;
+	letter-spacing: 0.06em;
+}
+
+/* Brushed-metal primary button */
+
+.theme-dark .mod-cta {
+	background-image: linear-gradient(180deg, #f5f5f5, #c9c9c9);
+}
+
+.theme-dark .search-result-file-matched-text {
+	color: #141414;
+}
+
+/* Neon header: negative-space H1.
+   Ported from Cyber Glow's "Centered Header 1 and glow" (theme.css:3348).
+   Same mechanism — stacked text-shadows + color: var(--text-on-accent) —
+   but SILVER's on-accent ink is dark (#141414), so the glyphs read as
+   cut-outs inside a silver halo instead of Cyber Glow's white letters. */
+
+.theme-dark .markdown-rendered h1, .theme-dark .markdown-rendered h1 strong {
+	text-align: center;
+	font-weight: 700;
+	color: var(--text-on-accent);
+	text-shadow: 0 0 5px var(--interactive-accent), 0 0 10px var(--interactive-accent), 0 0 20px var(--interactive-accent), 0 0 40px var(--interactive-accent), 0 0 45px var(--interactive-accent);
+}
+
+/* Faint silver echo on H2–H6 (Cyber Glow glows every heading level) */
+
+.theme-dark .markdown-rendered h2, .theme-dark .markdown-rendered h3, .theme-dark .markdown-rendered h4, .theme-dark .markdown-rendered h5, .theme-dark .markdown-rendered h6 {
+	text-shadow: 0 0 5px rgb(230 230 230 / 45%), 0 0 12px rgb(230 230 230 / 25%);
+}
+
+/* Bright-silver indicators: active file, active tab */
+
+.theme-dark .tree-item-self.is-active {
+	box-shadow: inset 2px 0 0 0 var(--interactive-accent);
+}
+
+.theme-dark .workspace-tab-header.is-active {
+	box-shadow: inset 0 2px 0 0 var(--interactive-accent);
+}
+
+.theme-dark .mod-cta:hover {
+	background-image: linear-gradient(180deg, #fff, #d9d9d9);
+}
+
+/* Monochrome syntax: keywords bold, comments & strings italic */
+
+.theme-dark .cm-s-obsidian .cm-keyword {
+	font-weight: 600;
+}
+
+.theme-dark .cm-s-obsidian .cm-comment {
+	font-style: italic;
+}
+
+.theme-dark .cm-s-obsidian .cm-string {
+	font-style: italic;
+}
+
+.theme-dark .markdown-rendered .token.keyword {
+	font-weight: 600;
+}
+
+.theme-dark .markdown-rendered .token.comment {
+	font-style: italic;
+}
+
+.theme-dark .markdown-rendered .token.string {
+	font-style: italic;
+}
+
+.theme-dark .cm-s-obsidian .cm-quote {
+	font-style: italic;
+}
+
+/* Dark thumb on the bright enabled toggle track */
+
+.theme-dark .checkbox-container.is-enabled::after {
+	background-color: #141414;
+}
+
+.theme-dark .cm-s-obsidian span.cm-highlight {
+	color: #141414;
+}
+
+/* Subtle active-line lift in the editor */
+
+.theme-dark .cm-s-obsidian .cm-line.cm-active {
+	background-color: rgb(255 255 255 / 3%);
+}
+
+/* Center the neon H1 line in live preview. The attribute substring match
+   targets HyperMD-header-1 without tripping stylelint's kebab-case
+   class-selector rule. */
+
+.theme-dark .cm-s-obsidian .cm-line[class*="HyperMD-header-1"] {
+	text-align: center;
+}
+
+/* Current search match keeps light ink on translucent silver */
+
+.theme-dark .cm-s-obsidian span.cm-highlight.obsidian-search-match-highlight {
+	color: var(--text-normal);
+}
+
+/* Neon H1 in live preview (text + formatting markers + bold spans) */
+
+.theme-dark .cm-s-obsidian .cm-line span.cm-header-2, .theme-dark .cm-s-obsidian .cm-line span.cm-header-3, .theme-dark .cm-s-obsidian .cm-line span.cm-header-4, .theme-dark .cm-s-obsidian .cm-line span.cm-header-5, .theme-dark .cm-s-obsidian .cm-line span.cm-header-6 {
+	text-shadow: 0 0 5px rgb(230 230 230 / 45%), 0 0 12px rgb(230 230 230 / 25%);
+}
+
+.theme-dark .cm-s-obsidian .cm-line span.cm-header-1, .theme-dark .cm-s-obsidian .cm-line span.cm-header-1 .cm-strong {
+	font-weight: 700;
+	color: var(--text-on-accent);
+	text-shadow: 0 0 5px var(--interactive-accent), 0 0 10px var(--interactive-accent), 0 0 20px var(--interactive-accent), 0 0 40px var(--interactive-accent), 0 0 45px var(--interactive-accent);
 }

@@ -1,90 +1,85 @@
-This is a sample theme for Obsidian ([https://obsidian.md](https://obsidian.md/)).
+# SILVER
 
-## First time creating a theme?
+A dark, monochrome theme for [Obsidian](https://obsidian.md).
 
-### Quick start
+Graphite chassis, silver hairlines, bright-silver interaction points. Every
+corner is square. There is no hue anywhere in the interface — emphasis comes
+from brightness, weight, and 1px rules, like an instrument panel.
 
-<img width="244" alt="Pasted image 20220822135601" src="https://user-images.githubusercontent.com/693981/186000386-4f4da987-fcaf-4aa5-aed4-e34b5901255d.png">
+> Status: **0.1.0 — design draft.** Dark mode only.
 
-First, select **Use this template** to create a copy of this repository under your GitHub profile. Then, clone your new repository to your computer.
+## Design language
 
-Once you have the repository locally on your computer, there are a couple of placeholder fields you'll need to fill in.
+- **Monochrome silver.** A twelve-step neutral scale from `#131313` (editor
+  background) to `#e8e8e8` (bright silver). The accent is brighter silver,
+  never a color. Text on accent is near-black `#141414`.
+- **Sharp geometry.** All radii are `0px` — tabs, tags, callouts, checkboxes,
+  toggles, modals, scrollbars. Icons use square stroke caps.
+- **Hairlines.** Borders and dividers are 1px translucent white (8–18%),
+  so layering reads as brushed metal rather than boxes.
+- **Signature details.**
+  - Bright-silver 2px indicator on the active tab (top) and active file (left).
+  - Silver highlighter: `==highlights==` invert to solid silver with dark ink.
+  - Brushed-metal gradient on primary (CTA) buttons.
+  - Uppercase, letter-spaced vault name and callout titles.
+  - Neon negative-space H1: dark cut-out glyphs inside a stacked silver
+    halo (ported from Cyber Glow's header glow), centered; faint silver
+    echo on H2–H6. Square list bullets.
+  - Monochrome syntax highlighting: keywords bold-bright, strings and
+    comments italic-dim, functions pure white.
+  - Inverted silver tooltips and notices; tabular numerals in the status bar.
 
-1. Inside the `manifest.json` file, update the placeholder fields to describe your theme. For example:
+## Palette
 
-  ```json
-  {
-    "name": "Moonstone",
-    "author": "Your Name",
-    "version": "0.0.0",
-    "minAppVersion": "1.10.6"
-  }
-  ```
+| Role            | Value                          |
+| --------------- | ------------------------------ |
+| Editor bg       | `#131313`                      |
+| Sidebar bg      | `#171717`                      |
+| Chrome bg       | `#101010` (titlebar, ribbon, status bar) |
+| Text            | `#c6c6c6`                      |
+| Muted / faint   | `#8f8f8f` / `#616161`          |
+| Accent (silver) | `#e6e6e6`, hover `#f2f2f2`     |
+| On-accent ink   | `#141414`                      |
+| Hairline        | `rgb(255 255 255 / 10%)`       |
 
-   - **name** is the name of your theme.
-   - **author** is your name.
-   - **version** is the version of your theme.
-   - **minAppVersion** should only be changed as you add new CSS from Obsidian updates.
+## Preview in this vault
 
-After you have those fields configured, all that's left to do is add your styles! All of your CSS needs to be inside the file `theme.css` as a part of your [release](#releasing-versions).
+This repository lives inside the vault at `.obsidian/themes/SILVER`, so
+Obsidian picks it up directly:
 
-For a deeper walkthrough, see the official [Build a theme](https://docs.obsidian.md/Themes/App+themes/Build+a+theme) tutorial.
+1. Settings → Appearance → Themes → select **SILVER**.
+2. Make sure the base mode is **Dark** (SILVER is dark-only).
+3. Leave the accent color unset so the theme's silver accent applies.
 
-## Preparing your theme for the community directory
+If Obsidian was open while the files changed, reload with `Ctrl+R`
+(`Cmd+R` on macOS).
 
-Before you can submit your theme to the [community directory](https://community.obsidian.md/), there are a few things you'll need to prepare.
+## Development
 
-Review the [Theme guidelines](https://docs.obsidian.md/Themes/App+themes/Theme+guidelines) for best practices, such as using CSS variables, avoiding `!important`, and keeping assets local. Themes that don't follow them are more likely to break on future Obsidian versions or get flagged during review.
+All styles live in `theme.css`, organized in commented sections: geometry,
+palette, text & accent, typography, editor, code, tags/tasks/callouts/tables,
+workspace chrome, components, graph & canvas, signature details.
 
-This template already includes [`stylelint-config-obsidianmd`](https://github.com/obsidianmd/stylelint-config), which enforces the same CSS rules used during theme review. Run `npm install` once, then `npm run lint` to check `theme.css` against them. This also runs automatically on every pull request via the [lint workflow](.github/workflows/lint.yml).
+The theme is built against Obsidian's CSS variable system (verified against
+the app's own `app.css`), so it tracks app updates instead of fighting them.
+No `!important`, no external assets, no `:has()`.
 
-### Add a screenshot thumbnail
-
-Inside the repository, include a screenshot thumbnail of your theme. We recommend storing it in a `screenshots` folder at the root of your repository, for example `screenshots/screenshot.png`. This image will be used for the small preview in the theme list.
-
-Your screenshot file should be `16:9` aspect ratio.
-The recommended size is 512x288.
-
-### Releasing versions
-
-Themes support [GitHub Releases](https://docs.github.com/en/repositories/releasing-projects-on-github/managing-releases-in-a-repository), introduced in v0.16 of Obsidian. This lets you specify which versions of your theme are compatible with which versions of Obsidian.
-
-This repository already includes a [GitHub Actions workflow](.github/workflows/release.yml) that automates this. Pushing a tag matching your `manifest.json` version creates a draft release with `manifest.json` and `theme.css` attached, which you can then review and publish. See [Release your theme with GitHub Actions](https://docs.obsidian.md/Themes/App+themes/Release+your+theme+with+GitHub+Actions) for the full walkthrough.
-
-Before you push a tag, make sure `versions.json` is up to date. This file maps your theme's version to the minimum Obsidian version it's compatible with:
-
-```json
-{
-  "1.0.0": "1.10.6"
-}
+```bash
+npm install     # once
+npm run lint    # stylelint with stylelint-config-obsidianmd (the community review rules)
 ```
 
-For the initial release of your theme, you shouldn't need to make any changes to this file. When you release a new version, add an entry for it:
+## Releasing
 
-```json
-{
-  "1.0.0": "1.10.6",
-  "1.0.1": "1.10.6"
-}
-```
+Pushing a tag that matches `manifest.json`'s version triggers the GitHub
+Actions release workflow, which drafts a release with `manifest.json` and
+`theme.css` attached. Keep `versions.json` in sync (theme version → minimum
+Obsidian version). A `screenshots/screenshot.png` (16:9, 512×288 recommended)
+is required before community-directory submission.
 
-The "key" is your theme's version, and the "value" is the minimum version of Obsidian that version is compatible with. If a new version of your theme only works with an Insider build of Obsidian, set this value accordingly, so users on older versions of Obsidian won't be prompted to update to a version that won't work for them.
+See the official [Build a theme](https://docs.obsidian.md/Themes/App+themes/Build+a+theme)
+and [Submit your theme](https://docs.obsidian.md/Themes/App+themes/Submit+your+theme) guides.
 
-## Submit your theme for review
+## License
 
-To have your theme included in the Theme Gallery, you'll submit it through the Obsidian Community directory. Make sure you've [added a screenshot](#add-a-screenshot-thumbnail) and [published a release](#releasing-versions) first, since the submission form needs both.
-
-You'll also need a `LICENSE` file in the root of your repository, which isn't included in this template. See [Choose a License](https://choosealicense.com/) if you're not sure which one to use. See the official [Submit your theme](https://docs.obsidian.md/Themes/App+themes/Submit+your+theme) guide for more detail.
-
-1. Go to [community.obsidian.md](https://community.obsidian.md) and sign in with your Obsidian account.
-2. Link your GitHub account to your profile. This lets the directory verify that you own the repository you're submitting.
-3. In the sidebar, select **Themes**, then select **New theme**.
-4. Fill out the submission form:
-   - **GitHub repository URL** is your repository's URL, for example `https://github.com/your-username/your-repo-name`.
-   - **Owner** is who will own and maintain this entry, and doesn't have to match the repository's GitHub owner.
-   - **Screenshot path** is the path to your screenshot, relative to the repository root, for example `screenshots/screenshot.png`.
-   - For **Supported modes**, select Dark and/or Light depending on which your theme supports.
-5. Read and agree to the [Developer Policies](https://docs.obsidian.md/Developer+policies), and confirm that you'll continue to support your theme (or remove/transfer it if you can no longer provide support).
-6. Select **Submit**.
-
-The directory processes the `manifest.json` at the HEAD of your repository's default branch, so make sure it's accurate and committed before submitting. Obsidian downloads `manifest.json` and `theme.css` from the GitHub release whose tag matches the version in your manifest, which is why a published release is required.
+ISC — see [LICENSE](LICENSE).
