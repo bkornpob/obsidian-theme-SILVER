@@ -44,6 +44,29 @@ from brightness, weight, and 1px rules, like an instrument panel.
 | On-accent ink   | `#141414`                      |
 | Hairline        | `rgb(255 255 255 / 10%)`       |
 
+## Background image
+
+The photo from `assets/README-1795142408525.png` is embedded as base64 and
+rendered on a fixed layer behind the UI (`body::before`), so blur/dim never
+touch the interface itself. All controls live in the "Background image —
+MANUAL CONTROLS" block at the top of `theme.css`:
+
+| Knob                   | Default  | Meaning                              |
+| ---------------------- | -------- | ------------------------------------ |
+| `--silver-bg-blur`     | `6px`    | 0 = sharp; edge overscan auto-scales |
+| `--silver-bg-dim`      | `0.75`   | brightness: 0 = black, 1 = original  |
+| `--silver-bg-saturate` | `0.4`    | 0 = grayscale, 1 = full color        |
+| `--silver-bg-size`     | `cover`  | cover / contain / auto / e.g. 120%   |
+| `--silver-bg-position` | `center` | center / top / bottom / 50% 30%      |
+| `--silver-panel-alpha` | `0.65`   | sidebar + chrome opacity: 0 = glass, 1 = solid |
+| `--silver-main-alpha`  | `0.9`    | main editor opacity (dimmer than sidebars) |
+
+The workspace is painted as per-zone sheets: sidebars and chrome at
+`--silver-panel-alpha`, the main editor split at `--silver-main-alpha`.
+Inner surfaces (leaves, view content, tab strips) are transparent so
+opacity never compounds across nested panels; menus, modals, code
+blocks and input fields stay opaque for legibility.
+
 ## Preview in this vault
 
 This repository lives inside the vault at `.obsidian/themes/SILVER`, so
