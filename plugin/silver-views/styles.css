@@ -1,0 +1,27 @@
+/* SILVER Views — picker modal styling (theme-agnostic, sharp corners) */
+
+.silver-view-suggestion {
+	display: flex;
+	align-items: center;
+	gap: 10px;
+}
+
+.silver-view-swatch {
+	width: 18px;
+	height: 18px;
+	flex-shrink: 0;
+	border: 1px solid rgb(255 255 255 / 20%);
+}
+
+.silver-view-swatch-default {
+	background-image: linear-gradient(135deg, #e8e8e8, #616161);
+}
+
+.silver-view-suggestion-label {
+	flex-grow: 1;
+}
+
+.silver-view-suggestion-current {
+	color: var(--text-muted);
+	font-size: 0.8em;
+}
