@@ -381,6 +381,19 @@ svg * {
 }
 
 /* ---------------------------------------------------------------
+   Neon header spectrum — experimental, intentional departure from
+   the monochrome language. H2–H6 only; H1 stays silver.
+   --------------------------------------------------------------- */
+
+.theme-dark {
+	--neon-violet: #b366ff;
+	--neon-blue: #4da6ff;
+	--neon-green: #3dff9e;
+	--neon-yellow: #ffd93d;
+	--neon-red: #ff4d4d;
+}
+
+/* ---------------------------------------------------------------
    Signature details
    --------------------------------------------------------------- */
 
@@ -431,10 +444,36 @@ svg * {
 	text-shadow: 0 0 5px var(--interactive-accent), 0 0 10px var(--interactive-accent), 0 0 20px var(--interactive-accent), 0 0 40px var(--interactive-accent), 0 0 45px var(--interactive-accent);
 }
 
-/* Faint silver echo on H2–H6 (Cyber Glow glows every heading level) */
+/* Rainbow neon plates, reading view: one hue per level, white ink */
+
+.theme-dark .markdown-rendered h2 {
+	--header-neon: var(--neon-violet);
+}
+
+.theme-dark .markdown-rendered h3 {
+	--header-neon: var(--neon-blue);
+}
+
+.theme-dark .markdown-rendered h4 {
+	--header-neon: var(--neon-green);
+}
+
+.theme-dark .markdown-rendered h5 {
+	--header-neon: var(--neon-yellow);
+}
+
+.theme-dark .markdown-rendered h6 {
+	--header-neon: var(--neon-red);
+}
 
 .theme-dark .markdown-rendered h2, .theme-dark .markdown-rendered h3, .theme-dark .markdown-rendered h4, .theme-dark .markdown-rendered h5, .theme-dark .markdown-rendered h6 {
-	text-shadow: 0 0 5px rgb(230 230 230 / 45%), 0 0 12px rgb(230 230 230 / 25%);
+	width: fit-content;
+	max-width: 100%;
+	padding: 2px 10px;
+	color: #fff;
+	background-color: color-mix(in srgb, var(--header-neon) 12%, transparent);
+	box-shadow: inset 0 0 10px color-mix(in srgb, var(--header-neon) 35%, transparent), 0 0 6px color-mix(in srgb, var(--header-neon) 55%, transparent), 0 0 18px color-mix(in srgb, var(--header-neon) 35%, transparent), 0 0 36px color-mix(in srgb, var(--header-neon) 20%, transparent);
+	text-shadow: 0 0 6px color-mix(in srgb, var(--header-neon) 70%, transparent);
 }
 
 /* Bright-silver indicators: active file, active tab */
@@ -511,14 +550,43 @@ svg * {
 	color: var(--text-normal);
 }
 
-/* Neon H1 in live preview (text + formatting markers + bold spans) */
+/* Rainbow neon, live preview: hue per level on the header spans */
 
-.theme-dark .cm-s-obsidian .cm-line span.cm-header-2, .theme-dark .cm-s-obsidian .cm-line span.cm-header-3, .theme-dark .cm-s-obsidian .cm-line span.cm-header-4, .theme-dark .cm-s-obsidian .cm-line span.cm-header-5, .theme-dark .cm-s-obsidian .cm-line span.cm-header-6 {
-	text-shadow: 0 0 5px rgb(230 230 230 / 45%), 0 0 12px rgb(230 230 230 / 25%);
+.theme-dark .cm-s-obsidian .cm-line span.cm-header-2 {
+	--header-neon: var(--neon-violet);
 }
+
+.theme-dark .cm-s-obsidian .cm-line span.cm-header-3 {
+	--header-neon: var(--neon-blue);
+}
+
+.theme-dark .cm-s-obsidian .cm-line span.cm-header-4 {
+	--header-neon: var(--neon-green);
+}
+
+.theme-dark .cm-s-obsidian .cm-line span.cm-header-5 {
+	--header-neon: var(--neon-yellow);
+}
+
+.theme-dark .cm-s-obsidian .cm-line span.cm-header-6 {
+	--header-neon: var(--neon-red);
+}
+
+/* Neon H1 in live preview (text + formatting markers + bold spans) */
 
 .theme-dark .cm-s-obsidian .cm-line span.cm-header-1, .theme-dark .cm-s-obsidian .cm-line span.cm-header-1 .cm-strong {
 	font-weight: 700;
 	color: var(--text-on-accent);
 	text-shadow: 0 0 5px var(--interactive-accent), 0 0 10px var(--interactive-accent), 0 0 20px var(--interactive-accent), 0 0 40px var(--interactive-accent), 0 0 45px var(--interactive-accent);
+}
+
+/* Rainbow neon plates, live preview: white ink, glow background.
+   Formatting markers (##) are excluded so they stay dim silver. */
+
+.theme-dark .cm-s-obsidian .cm-line span.cm-header-2:not(.cm-formatting-header), .theme-dark .cm-s-obsidian .cm-line span.cm-header-3:not(.cm-formatting-header), .theme-dark .cm-s-obsidian .cm-line span.cm-header-4:not(.cm-formatting-header), .theme-dark .cm-s-obsidian .cm-line span.cm-header-5:not(.cm-formatting-header), .theme-dark .cm-s-obsidian .cm-line span.cm-header-6:not(.cm-formatting-header) {
+	padding: 1px 6px;
+	color: #fff;
+	background-color: color-mix(in srgb, var(--header-neon) 12%, transparent);
+	box-shadow: inset 0 0 10px color-mix(in srgb, var(--header-neon) 35%, transparent), 0 0 6px color-mix(in srgb, var(--header-neon) 55%, transparent), 0 0 18px color-mix(in srgb, var(--header-neon) 35%, transparent), 0 0 36px color-mix(in srgb, var(--header-neon) 20%, transparent);
+	text-shadow: 0 0 6px color-mix(in srgb, var(--header-neon) 70%, transparent);
 }

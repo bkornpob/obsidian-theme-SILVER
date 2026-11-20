@@ -23,8 +23,10 @@ from brightness, weight, and 1px rules, like an instrument panel.
   - Brushed-metal gradient on primary (CTA) buttons.
   - Uppercase, letter-spaced vault name and callout titles.
   - Neon negative-space H1: dark cut-out glyphs inside a stacked silver
-    halo (ported from Cyber Glow's header glow), centered; faint silver
-    echo on H2–H6. Square list bullets.
+    halo (ported from Cyber Glow's header glow), centered.
+  - Neon H2–H6 plates (experimental rainbow): white text on glowing
+    violet/blue/green/yellow/red backgrounds, one hue per level.
+    Square list bullets.
   - Monochrome syntax highlighting: keywords bold-bright, strings and
     comments italic-dim, functions pure white.
   - Inverted silver tooltips and notices; tabular numerals in the status bar.
