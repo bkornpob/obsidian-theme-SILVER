@@ -80,3 +80,5 @@ If SILVER helps you write, think, or remember, then he's still keeping someone c
 I put together a small playlist as a tribute. 🤍
 
 [▶️ **Watch the SILVER playlist on YouTube**](https://www.youtube.com/playlist?list=PLRbxKENZ4wQY)
+
+![](assets/SILVER-photoID.png)
